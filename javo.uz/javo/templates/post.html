@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ post.title }}{% endblock title %}
+
+{% block content %}
+
+{#            <!-- Page Header Start -->#}
+{#            <div class="container py-5 px-2 bg-primary">#}
+{#                <div class="row py-5 px-4">#}
+{#                    <div class="col-sm-6 text-center text-md-left">#}
+{#                        <h1 class="mb-3 mb-md-0 text-white text-uppercase font-weight-bold">Blog Detail</h1>#}
+{#                    </div>#}
+{#                    <div class="col-sm-6 text-center text-md-right">#}
+{#                        <div class="d-inline-flex pt-2">#}
+{#                            <h4 class="m-0 text-white"><a class="text-white" href="{% url 'home' %}">Home</a></h4>#}
+{#                            <h4 class="m-0 text-white px-2">/</h4>#}
+{#                            <h4 class="m-0 text-white">Blog Detail</h4>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <!-- Page Header End -->#}
+
+            <!-- Blog Detail Start -->
+            <div id="p" class="container py-5 px-2 bg-white">
+                <div class="row px-4">
+                    <div class="col-12">
+                        {% if object.photo %}
+                          <img class="img-fluid mb-4" src="{{ post.photo.url }}" alt="{{ post.title | title }} ">
+                        {% endif %}
+                        <h2 class="mb-3 font-weight-bold">{{ post.title|title }}</h2>
+                        <div class="d-flex">
+                            <p class="mr-3 text-muted"><i class="fa fa-calendar-alt"></i> {{ post.date | timesince }} ego</p>
+                            <p class="mr-3 text-muted"><i class="fa fa-user"></i> {{ post.author }}</p>
+                        </div>
+                    <p>{{ post.body | safe}}</p>
+                    </div>
+                    <div class="col-12 py-4">
+                        <div class="btn-group btn-group-lg w-100">
+                            <a href="{% url 'home' %}"><button type="button" class="btn btn-outline-primary" ><i class="fa fa-angle-left mr-2"></i>Bosh sahifaga qaytish </button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog Detail End -->
+
+{% endblock content %}
