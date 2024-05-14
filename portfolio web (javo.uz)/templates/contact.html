@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact{% endblock title %}
+
+{% block content%}
+
+            <!-- Page Header Start -->
+            <div id="c" class="container py-5 px-2 bg-primary">
+                <div class="row py-5 px-4">
+                    <div class="col-sm-6 text-center text-md-left">
+                        <h1 class="mb-3 mb-md-0 text-white text-uppercase font-weight-bold">Contact Me</h1>
+                    </div>
+                    <div class="col-sm-6 text-center text-md-right">
+                        <div class="d-inline-flex pt-2">
+                            <h4 class="m-0 text-white"><a class="text-white" href="{%  url 'home' %}">Home</a></h4>
+                            <h4 class="m-0 text-white px-2">/</h4>
+                            <h4 class="m-0 text-white">Contact Me</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page Header End -->
+
+
+            <!-- Contact Start -->
+            <div class="container bg-white pt-5">
+                <div class="row px-3 pb-2">
+                    <div class="col-sm-4 text-center mb-3">
+                        <i class="fa fa-2x fa-map-marker-alt mb-3 text-primary"></i>
+                        <h4 class="font-weight-bold">Address</h4>
+                        <p>Living:Tashkent</p><p>Hometown:Shahrisabz</p>
+                    </div>
+                    <div class="col-sm-4 text-center mb-3">
+                        <i class="fa fa-2x fa-phone-alt mb-3 text-primary"></i>
+                        <h4 class="font-weight-bold">Phone</h4>
+                        <p>+998 90 667.52.66</p><p>+998 88 144.49.09</p>
+                    </div>
+                    <div class="col-sm-4 text-center mb-3">
+                        <i class="far fa-2x fa-envelope mb-3 text-primary"></i>
+                        <h4 class="font-weight-bold">Email</h4>
+                        <p>javohrdev@gmail.com</p>
+                    </div>
+                </div>
+                <div class="col-md-12 pb-5">
+                    <div class="contact-form">
+                        <div id="success"></div>
+                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                            <div class="col-12 text-center py-4 ">
+                                  <a class="btn btn-outline-primary mr-3" href="https://github.com/javohuz"           target="_blank"><i class="fab fa-github"></i></a>
+                                  <a class="btn btn-outline-primary mr-3" href="https://t.me/javohrdev"               target="_blank"><i class="fab fa-telegram"></i></a>
+                                  <a class="btn btn-outline-primary mr-3" href="https://www.linkedin.com/in/javohir-rashidov-a04a00290/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                  <a class="btn btn-outline-primary mr-3" href="https://www.instagram.com/javohrdev/" target="_blank"><i class="fab fa-instagram"></i></a>
+                             </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Contact End -->
+
+        <script>
+            window.replainSettings = { id: 'a66998d6-b2b3-4d96-89c3-6790fe6ce8db' };
+            (function(u){var s=document.createElement('script');s.async=true;s.src=u;
+            var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);
+            })('https://widget.replain.cc/dist/client.js');
+        </script>
+        
+{% endblock content %}
