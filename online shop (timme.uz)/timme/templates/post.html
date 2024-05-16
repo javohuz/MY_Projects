@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}{{ post.title }}{% endblock title %}
+
+{% block content %}
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="{% url 'home' %}">Bosh sahifa</a>
+                    <a class="breadcrumb-item text-dark" href="{% url 'shop' %}">Soatlar</a>
+                    <span class="breadcrumb-item active">{{ post.title }}</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+
+    <!-- Shop Detail Start -->
+    <div class="container-fluid pb-5">
+        <div class="row px-xl-5">
+            <div class="col-lg-5 mb-30">
+                <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner bg-light">
+
+                        <div class="carousel-item active">
+                            <img class="w-100 h-100" src="{{ post.photo1.url }}" alt="{{ post.title | title }}">
+                        </div>
+
+                    {% if post.photo2 %}
+                        <div class="carousel-item">
+                            <img class="w-100 h-100" src="{{ post.photo2.url }}" alt="{{ post.title | title }}">
+                        </div>
+                    {% endif %}
+
+                    {% if post.photo3 %}
+                        <div class="carousel-item">
+                            <img class="w-100 h-100" src="{{ post.photo3.url }}" alt="{{ post.title | title }}">
+                        </div>
+                    {% endif %}
+
+                    {% if post.photo4 %}
+                        <div class="carousel-item">
+                            <img class="w-100 h-100" src="{{ post.photo4.url }}" alt="{{ post.title | title }}">
+                        </div>
+                    {% endif %}
+                    {% if post.photo5 %}
+                        <div class="carousel-item">
+                            <img class="w-100 h-100" src="{{ post.photo5.url }}" alt="{{ post.title | title }}">
+                        </div>
+                    {% endif %}
+
+                    </div>
+                    <a class="carousel-control-prev" style="color: #000000FF" href="#product-carousel" data-slide="prev">
+                        <i class="fa fa-2x fa-angle-left "></i>
+                    </a>
+                    <a class="carousel-control-next" style="color: #000000FF" href="#product-carousel" data-slide="next">
+                        <i class="fa fa-2x fa-angle-right " ></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-7 h-auto mb-30">
+                <div class="h-100 bg-light p-30">
+                    <h3>{{ post.hometitle }}</h3>
+                    <p style="color: #090b0c">Buyurtma uchun mahsulot raqami : [ {{ post.pk }} ]</p>
+                        {% if post.narxi1 %}
+                            <h5 class="text-muted ml-2"><del>{{ post.narxi1 }}</del></h5>
+                        {% endif %}
+                    <h3>{{ post.narxi2 }}</h3>
+                        <div class="mb-4" >
+                        {{ post.summary | safe }}
+                        </div>
+                        
+                        <p class="mb-5" {% if post.mahsulot_soni == '2' or post.mahsulot_soni == '1'  %} style="color: darkred " {% endif %}> Qoldi : {{ post.mahsulot_soni }} </p>
+                    <div class=" d-flex align-items-center mb-4 pt-2  ">
+                        <div>
+                            <a href="{%  url 'get' %}">
+                            <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">
+                                <i class="fa fa-shopping-cart mr-1"></i>Buyurtma
+                            </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="bg-light p-30">
+                    <div class="nav nav-tabs mb-4">
+
+                    {% if post.mahsulotTavsifi %}
+                        <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Mahsulot tavsifi</a>
+                    {% endif %}
+                    
+                    {% if post.batafsil %}
+                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Batafsil...</a>
+                    {% endif %}
+                    
+                    </div>
+                    <div class="tab-content">
+                     {% if post.mahsulotTavsifi %}
+                        <div class="tab-pane fade show active" id="tab-pane-1">
+                        {{ post.mahsulotTavsifi | safe }}
+                        </div>
+                     {% endif %}
+
+                    {% if post.batafsil %}
+                        <div class="tab-pane fade" id="tab-pane-2">
+                           {{ post.batafsil | safe }}
+                        </div>
+                    {% endif %}
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Shop Detail End -->
+
+
+    <!-- Products Start -->
+    <div class="container-fluid py-5">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Sizga yoqishi mumkin</span></h2>
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="owl-carousel related-carousel">
+            {% for post in posts %}
+                {% if post.maylike %}
+                    <div class="product-item bg-light">
+                        <div class="product-img position-relative overflow-hidden">
+                            <a href="{% url 'post' post.pk %}"><img class="img-fluid w-100" src="{{ post.photo1.url }}" alt="{{ post.title }}"></a>
+                        </div>
+                        <div class="text-center py-4">
+                            <a class="h6 text-decoration-none text-truncate" href="{% url 'post' post.pk %}">{{ post.title }}</a>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <h5>{{ post.narxi2 }}</h5><h6 class="text-muted ml-2"><del>{{ post.narxi1 }}</del></h6>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Products End -->
+
+
+
+{% endblock content %}
+

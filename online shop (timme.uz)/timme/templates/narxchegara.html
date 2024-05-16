@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Soatlar {{ narxchegara.title }}{% endblock title %}
+
+{% block content %}
+
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="{% url 'home' %}">Bosh sahifa</a>
+                    <a class="breadcrumb-item text-dark" href="{% url 'shop' %}">Soatlar</a>
+                    <span class="breadcrumb-item active">{{ narxchegara.title }}</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+
+    <!-- Shop Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <!-- Shop Sidebar Start -->
+            <div class="col-lg-3 col-md-4">
+                <!-- Price Start -->
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Narx buyicha izlash</span></h5>
+                <div class="bg-light p-4 mb-30">
+                    <form>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <a href="{% url 'shop' %} " ><span >Barchasi</span></a>
+                        </div>
+                        {% for narx in narx %}
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <a href="{% url 'narx' narx.pk %} " {% if narxchegara.title == narx.title %}style="color: #23272b" {% endif %}>
+                                <span >{% if narxchegara.title == narx.title %}<i class="fa fa-angle-double-right" aria-hidden="true"></i>{% endif %} {{ narx.title }}</span>
+                            </a>
+                        </div>
+                        {% endfor %}
+
+                    </form>
+                </div>
+                <!-- Price End -->
+                
+            </div>
+            <!-- Shop Sidebar End -->
+
+
+            <!-- Shop Product Start -->
+            <div class="col-lg-9 col-md-8">
+                <div class="row pb-3">
+                    {% for post in posts %}
+                        {% if post.narx >= narxchegara.dan and post.narx <= narxchegara.gacha %}
+                                <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                                    <div class="product-item bg-light mb-4">
+                                        <div class="product-img position-relative overflow-hidden">
+                                            <a href="{% url 'post' post.pk %}"><img class="img-fluid w-100" src="{{ post.photo1.url }}" alt="{{ post.title }}"></a>
+                                        </div>
+                                        <div class="text-center py-4">
+                                            <a class="h6 text-decoration-none text-truncate" href="{% url 'post' post.pk %}">{{ post.title }}</a>
+                                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                                <h5>{{ post.narxi2 }}</h5><h6 class="text-muted ml-2"><del>{{ post.narxi1 }}</del></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Shop Product End -->
+        </div>
+    </div>
+    <!-- Shop End -->
+
+{% endblock content %}

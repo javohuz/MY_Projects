@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Upload{% endblock title %}
+
+{% block content %}
+            <!-- Shop Product Start -->
+            <div class="col-lg-9 col-md-8">
+                <div class="row pb-3">
+                    {% for up in upload %}
+                    <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                        <div class="product-item bg-light mb-4">
+                            <div class="text-center py-4">
+                                <h6><span class="text-muted" >Ismi:</span> {{ up.name }}</h6>
+                                <h6><span class="text-muted" >Tel:</span>  {{ up.tel_number }}</h6>
+                                <h6><span class="text-muted" >Mahsulot:</span>  {{ up.number_product }}</h6>
+                                <h6><span class="text-muted" >Vaqt:</span> {{ up.publish_date | timesince }} ago</h6>
+                                <a href="../post/{{ up.number_product }}" style="text-decoration: underline"><p>Mahsulotni kurish..</p></a>
+                                <a href="{% url 'up_delate' up.pk %}" style="color: darkred">O'chirish</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+{% endblock content %}
