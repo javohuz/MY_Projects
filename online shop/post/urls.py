@@ -16,7 +16,7 @@ urlpatterns = [
     path('tur/<int:pk>/', TurDetailView.as_view(), name='tur'),
     path('narx-buyicha/<int:pk>/', NarxDetailView.as_view(), name='narx'),
     path('shop/' , ShopPageView.as_view() , name = 'shop'),
-    path('buyurtmalar', UploadView.as_view(), name= 'upload'),
+    path('buyurtmalar/', UploadView.as_view(), name= 'upload'),
     path('buyurtma/', views.get , name='get' ),
     path('uploads/<int:pk>/', UploadDelateView.as_view(), name='up_delate'),
 
